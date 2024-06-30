@@ -1,0 +1,5 @@
+//if you want some files to not go into production
+ 
+/node_modules
+/.parcel-cache
+/dist
