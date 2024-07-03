@@ -13,13 +13,38 @@ const parent=React.createElement(
         ])]
 )
 
+const number ="This is a localhost being used for learning purposes 2000"
+
+const num1=500;
+const num2=600;
+
+const element=<h5>{num1+num2}</h5>
+
+//Component Composition
+const JsxHeading=()=><h3>Hello World from Reactive <br></br> {element}</h3>
+
+const JsxHeading2=()=>{
+       return(
+             
+              <h1>
+                      {JsxHeading()}
+                      <JsxHeading/>
+                  Hello World from Reactive!<br></br>
+                  {num1+num2+num2}<br></br>{console.log("xyz")}{number}
+              </h1>
+       )
+}
+    
+
+
     
 // const head=React.createElement("h1", 
 //     {id:"heading"}, 
-//     "Hello World from Reactive!" )
+//     "Hello World from Reactive!" ) 
 //  {} is the place above where you give attibutes to you Tags
        const container= document.getElementById("root")
        const root=ReactDOM.createRoot(container);
 //        root.render(head) 
-       root.render(parent)
-       
+       root.render(<JsxHeading2/>)
+
+        
