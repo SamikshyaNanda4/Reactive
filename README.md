@@ -17,5 +17,18 @@ Reactive is a git repository of me learning react from different sources and pus
 -Tree SHAKING Algorithm -rmove unused code for you ,suppose there is some extra random code
 -Different Build for the development and production
 
+/*
+
+Two Types of Export and Import 
+First Typ e is default export and import 
+1
+--->export default <name of variable>
+--->import <name of variable> from <file path>
+2
+--->export const Component 
+--->import {Component} from <file path>
+
+
+
 
 

@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Header from "./components/Header";
+import Body from "./components/Body"; 
 // nester structures
 
 /*
@@ -22,63 +24,11 @@ import ReactDOM from "react-dom/client";
        -Contact Us
 
 */
-const Header=()=>{
-    return(
-        <div className="header">
-            <div className="logo-container">
-            <a href="#"><img className="logo" src="https://i.ibb.co/w4NfNzT/FOOD-1.png" alt="FOOD-1" border="0" width={120} height={105}/></a>
-            </div>
-            <div className="nav-items">
-              <ul>
-                     <li>Home</li>
-                     <li>About Us</li>
-                     <li>Contact Us</li>
-                     <li>Cart</li>
-              </ul>
-            </div>
-        </div>
-    )
-}
 
-const Body=()=>{
-    return(
-        <div className="body">
-            <div className="search-container">
-                SEARCH YOUR FOOD <input type="text" className="search-input" placeholder="Search for Food"/>
-                <button className="search-btn"> Search</button>
-            </div>
-            <div className="restaurant-list">
-                <div className="res-container" style={{display:"flex",flexDirection:"row",flexWrap:"wrap",justifyContent:"space-evenly"}}>
-                   <RestaurantCard 
-                   resName="Meghana Foods" 
-                   resCuisine=" India, Asian" 
-                   resRating="4.2"
-                   imgsrc="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/TopPicks2024/44543180B.png"
-                   location="MG Road, Bengaluru"/>
-                   <RestaurantCard 
-                   resName="Lalji Foods"
-                    resCuisine="North Indian" 
-                    resRating="3.9"
-                    imgsrc="https://imgs.search.brave.com/_k1b2qVrPZjDZFcYCXy9tebSxAUJDJfzCCC7Zsp-Xho/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c3BpY2V1cHRoZWN1/cnJ5LmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyMC8xMC9w/b29yaS1yZWNpcGUt/MS5qcGc"
-                    location="RV College, Bengaluru"/>
-                   <RestaurantCard 
-                   resName="Anna's Kitchen" 
-                   resCuisine="South Indian" 
-                   resRating="4.0"
-                   imgsrc="https://imgs.search.brave.com/G96prUlHVS6dT2EEk2aPDdDU13SrceVSkyR4KDzkZ7s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS1jZG4udHJpcGFk/dmlzb3IuY29tL21l/ZGlhL3Bob3RvLW8v/MWEvYTUvYmQvZTQv/dGhlLWRvc2EtaS1v/cmRlcmVkLXdhcy5q/cGc"
-                   location="Cubbon Park, Bengaluru"/>
-                   <RestaurantCard/>
-                   <RestaurantCard/>
-                   <RestaurantCard/>
-                   <RestaurantCard/>
-                   <RestaurantCard/>
-                </div>
-            </div>
-        </div>
-    )
-}
 
-const resList={
+
+
+const resList2={
   "statusCode": 0,
   "data": {
     "tid": "334f5ce0-2b10-4c92-9931-2af26f58694d",
@@ -2898,7 +2848,7 @@ const resList={
                   {
                     "info": {
                       "id": "12808",
-                      "name": "A2B - Adyar Ananda Bhavan",
+                      "name": "Ananda Bhavan",
                       "cloudinaryImageId": "pdod4o1em9potwsd22rs",
                       "locality": "Wilson Garden",
                       "areaName": "Shanti Nagar",
@@ -4751,29 +4701,13 @@ const resList={
   "csrfToken": "NadCOPIVlGLa-KyVzsMM47FBsl7GrY_r_0RA-tbM"
 }
 
-const RestaurantCard=(props)=>{
-       
-    return(
-        <div className="res-card" >
-            <img className="res-img" src={props.imgsrc} alt="FOOD-1" border="0" width={200} height={185}/>
-            <h2 className="res-name">{props.resName}</h2>
-            <p className="res-cuisine">{props.resCuisine}</p>
-            <h4 className="res-rating">{props.resRating}⭐</h4>
-            <h4 className="res-cost">560 For Two</h4>
-            <h4 className="res-timing">10am to 9:30pm</h4>
-            <h4 className="res-location">{props.location}</h4>
-            <button className="res-btn">Order Now</button>
-        </div>
-    )
-}
-
 const  AppLayout=()=>{
-    return(
-        <div className="app">
-        <Header/>
-        <Body/>
-        </div>
-    )
+  return(
+      <div className="app">
+      <Header/>
+      <Body/>
+      </div>
+  )
 }
 
 
