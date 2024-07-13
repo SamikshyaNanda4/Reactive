@@ -30,5 +30,9 @@ First Typ e is default export and import
 
 
 
+#React Hooks
+Normal JS Functions written by Facebook developers 
 
-
+Two most important hooks
+-useState()- SuperPowerful React Variables
+-useEffect()
