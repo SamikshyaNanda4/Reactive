@@ -1,7 +1,5 @@
 import RestaurantCard from "./RestaurantCard";
-import {CDN_URL}  from "../utils/constants";
-import { resList } from "../utils/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Body=()=>{
     // resList.info.map
@@ -120,8 +118,34 @@ const Body=()=>{
         //                  }
         //                }
         //          ]
-        resList
+       []
      );
+
+     useEffect(()=>{
+        console.log("Use Effect Called");
+        fetchData();
+     },[]);
+
+     const fetchData= async()=>{
+        const data=await fetch(
+            "https://www.swiggy.com/mapi/homepage/getCards?lat=12.96340&lng=77.58550");
+        const json=await data.json();
+
+        console.log(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants)
+        setResLi(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
+     }
+
+     if(resLi.length===0){
+        return(
+            <div className="body">
+                <h1>Loading...</h1>
+            </div>
+        )
+     }
+
+   
+
+     console.log("body rendered");
      
 
 
@@ -132,10 +156,10 @@ const Body=()=>{
             onClick={()=>{
                 const filteredList=resLi.info.filter((res)=>
                 res.avgRating>4.3);
-                setResLi({info:filteredList})
+                setResLi({filteredList})
             }} 
             
-            onMouseOver={()=>{ console.log(resList.info)}}>
+            onMouseOver={()=>{ console.log(resList)}}>
                 TOP RATED RESTAURANTS
             </button>
 
@@ -153,9 +177,9 @@ const Body=()=>{
             
             <div className="restaurant-list">
                 <div className="res-container" style={{display:"flex",flexDirection:"row",flexWrap:"wrap",justifyContent:"space-evenly"}}>
-                  {resLi.info.map((restaurant)=>{
+                  {resLi.map((restaurant)=>{
                       return(
-                          <RestaurantCard key={restaurant.id} resData={restaurant} />
+                          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
                       )
                   })}
                 </div>
