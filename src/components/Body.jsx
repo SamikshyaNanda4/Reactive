@@ -2,128 +2,18 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 
 const Body=()=>{
-    // resList.info.map
-       
 
 
-    // const ListOfRestaurants={
-    //    "info": [
-    //     {
-    //                   "id": "69876",
-    //                   "name": "Subway",
-    //                   "cloudinaryImageId": "63178e3e64d503a479f2a2048a474552",
-    //                   "locality": "UB City",
-    //                   "areaName": "Central Bangalore",
-    //                   "costForTwo": "₹350 for two",
-    //                   "cuisines": [
-    //                     "Salads",
-    //                     "Snacks",
-    //                     "Desserts",
-    //                     "Beverages"
-    //                   ],
-    //                   "avgRating": 4.3,
-    //                   "parentId": "2",
-    //                   "avgRatingString": "4.3",
-    //                   "totalRatingsString": "1K+",
-    //                   "sla": {
-    //                     "deliveryTime": 40,
-    //                     "lastMileTravel": 2.3,
-    //                     "serviceability": "SERVICEABLE",
-    //                     "slaString": "40-45 mins",
-    //                     "lastMileTravelString": "2.2 km",
-    //                     "iconType": "ICON_TYPE_EMPTY"
-    //                   }
-    //                 },
-    //      { 
-    //                     "id": "69876",
-    //                     "name": "Subway",
-    //                     "cloudinaryImageId": "63178e3e64d503a479f2a2048a474552",
-    //                     "locality": "UB City",
-    //                     "areaName": "Central Bangalore",
-    //                     "costForTwo": "₹350 for two",
-    //                     "cuisines": [
-    //                       "Salads",
-    //                       "Snacks",
-    //                       "Desserts",
-    //                       "Beverages"
-    //                     ],
-    //                     "avgRating": 4.6,
-    //                     "parentId": "2",
-    //                     "avgRatingString": "4.3",
-    //                     "totalRatingsString": "1K+",
-    //                     "sla": {
-    //                       "deliveryTime": 40,
-    //                       "lastMileTravel": 2.3,
-    //                       "serviceability": "SERVICEABLE",
-    //                       "slaString": "40-45 mins",
-    //                       "lastMileTravelString": "2.2 km",
-    //                       "iconType": "ICON_TYPE_EMPTY"
-    //                     }
-    //                   }
-    //             ]
-    // }
-
-    const [resLi, setResLi] = useState(
-        // "info": [
-        //  {
-        //                "id": "69871",
-        //                "name": "Subway",
-        //                "cloudinaryImageId": "63178e3e64d503a479f2a2048a474552",
-        //                "locality": "UB City",
-        //                "areaName": "Central Bangalore",
-        //                "costForTwo": "₹350 for two",
-        //                "cuisines": [
-        //                  "Salads",
-        //                  "Snacks",
-        //                  "Desserts",
-        //                  "Beverages"
-        //                ],
-        //                "avgRating": 4.3,
-        //                "parentId": "2",
-        //                "avgRatingString": "4.3",
-        //                "totalRatingsString": "1K+",
-        //                "sla": {
-        //                  "deliveryTime": 40,
-        //                  "lastMileTravel": 2.3,
-        //                  "serviceability": "SERVICEABLE",
-        //                  "slaString": "40-45 mins",
-        //                  "lastMileTravelString": "2.2 km",
-        //                  "iconType": "ICON_TYPE_EMPTY"
-        //                }
-        //              },
-        //   { 
-        //                  "id": "69876",
-        //                  "name": "Another One",
-        //                  "cloudinaryImageId": "63178e3e64d503a479f2a2048a474552",
-        //                  "locality": "UB City",
-        //                  "areaName": "Central Bangalore",
-        //                  "costForTwo": "₹350 for two",
-        //                  "cuisines": [
-        //                    "Salads",
-        //                    "Snacks",
-        //                    "Desserts",
-        //                    "Beverages"
-        //                  ],
-        //                  "avgRating": 4.6,
-        //                  "parentId": "2",
-        //                  "avgRatingString": "4.3",
-        //                  "totalRatingsString": "1K+",
-        //                  "sla": {
-        //                    "deliveryTime": 40,
-        //                    "lastMileTravel": 2.3,
-        //                    "serviceability": "SERVICEABLE",
-        //                    "slaString": "40-45 mins",
-        //                    "lastMileTravelString": "2.2 km",
-        //                    "iconType": "ICON_TYPE_EMPTY"
-        //                  }
-        //                }
-        //          ]
-       []
-     );
+    const [resLi, setResLi] = useState([]);
+    const [searchText, setSearchText] = useState("");
+    const [filteredRestaurant, setFilteredRestaurant]=useState([]);
+    //whnever state variables update react trigger the reconciliation cycle or rerenders the components
+        console.log("body rendered")
 
      useEffect(()=>{
         console.log("Use Effect Called");
         fetchData();
+        
      },[]);
 
      const fetchData= async()=>{
@@ -133,6 +23,7 @@ const Body=()=>{
 
         console.log(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants)
         setResLi(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurant(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants)
      }
 
      if(resLi.length===0){
@@ -142,7 +33,7 @@ const Body=()=>{
             </div>
         )
      }
-
+ 
    
 
      console.log("body rendered");
@@ -152,32 +43,36 @@ const Body=()=>{
     return(
         <div className="body">    
         <div className="filter">
+            <div className="search">
+                <input type="text" className="search-box"  value={searchText} onChange={(e)=>{
+                    setSearchText(e.target.value);
+                }}/>
+                <button onClick={()=>{
+                    //filter the restaurant cards and update the UI
+                    //search text
+                    console.log(searchText);
+                   const list= resLi.filter((res)=>res.info.name.toUpperCase().includes(searchText.toUpperCase()));
+                   setFilteredRestaurant(list);
+
+
+                }}>Search</button>
+            </div>
             <button className="filter-btn" 
             onClick={()=>{
-                const filteredList=resLi.info.filter((res)=>
-                res.avgRating>4.3);
-                setResLi({filteredList})
+                const filteredList=resLi.filter((res)=>
+                res.info.avgRating>4.5);
+
+                
+                setFilteredRestaurant(filteredList);
             }} 
-            
-            onMouseOver={()=>{ console.log(resList)}}>
+            >
                 TOP RATED RESTAURANTS
             </button>
-
-            {/* <button className="all-btn" onClick={()=>{
-                const setAll=
-                ListOfRestaurants.info.map((res)=>{
-                    setAll.push(res);
-                })
-                setListOfRestaurants({info:setAll})
-            }}>
-                ALL RESTAURANTS
-            </button> */}
-
-            </div>        
+              </div>        
             
             <div className="restaurant-list">
                 <div className="res-container" style={{display:"flex",flexDirection:"row",flexWrap:"wrap",justifyContent:"space-evenly"}}>
-                  {resLi.map((restaurant)=>{
+                  {filteredRestaurant.map((restaurant)=>{
                       return(
                           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
                       )
