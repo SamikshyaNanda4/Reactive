@@ -1,5 +1,5 @@
 export const CDN_URL="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/TopPicks2024/44543180B.png"
-export const LOGO_URL="https://i.ibb.co/w4NfNzT/FOOD-1.png"
+export const LOGO_URL="https://i.postimg.cc/Hn33cHCB/FOOD-1.png"
 
 export const resList={"info": [{
   "id": "350427",

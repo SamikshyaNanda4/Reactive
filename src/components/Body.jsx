@@ -16,7 +16,7 @@ const Body=()=>{
         
      },[]);
 
-     const fetchData= async()=>{
+     const fetchData = async()=>{
         const data=await fetch(
             "https://www.swiggy.com/mapi/homepage/getCards?lat=12.96340&lng=77.58550");
         const json=await data.json();
